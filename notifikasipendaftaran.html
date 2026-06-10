@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastCycle: Registrasi</title>
+    <link rel="shortcut icon" href="stok_foto/logo.png">
+
+    <!-- Noto Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+<!-- bagian styling -->
+    <style>
+      * {
+           box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Noto Sans", sans-serif !important;
+        }
+
+        /* Body DONE */
+        body {
+            margin: 200px 60px 0px 60px;
+            background: linear-gradient(to bottom, #010101, #5c604f);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* header DONE */
+        .header {
+          color: white;
+      position: fixed;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px;
+      z-index: 1000;
+      margin-top: -150px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      height: 90px;
+      margin-right: 3px;
+    }
+    .logo span {
+      font-size: 40px;
+      font-weight: bold;
+    }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      padding-right: 40px;
+    }
+    .nav-item {
+      position: relative;
+      cursor: pointer;
+    }
+    .nav-item > a {
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+    }
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      min-width: 120px;
+    }
+    .dropdown a {
+      display: block;
+      color: white;
+      padding: 10px;
+      text-decoration: none;
+      font-size: 15px;
+    }
+    .dropdown a:hover {
+      background-color: #555;
+    }
+    .nav-item:hover .dropdown {
+      display: block;
+    }
+     .menu-icon {
+      font-size: 28px;
+      display: none;
+     }  
+    /* Media query untuk layar sangat kecil (ponsel) */
+    @media (max-width: 768px) {
+            /*header responsive */  
+            .logo img{
+        height:70px;
+      }
+      .logo span{
+        font-size: 35px;
+      }
+      .menu-icon {
+        display: block;
+      }
+      .nav-links {
+        text-align: center;
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        padding: 20px 0; 
+       }
+      .nav-links.hidden {
+         display: flex;
+      }
+      .nav-item {
+         margin: 10px 0;
+         text-align: center;
+      }
+      .dropdown {
+         position: static;
+         background-color: transparent;
+         padding: 0;
+      }
+      .dropdown a {
+          margin: 0;
+          color: white;
+      }
+      .notifikasi {
+        max-width: 500px;
+        margin-top: 156px;
+        margin-bottom: 56px;
+      }
+    }
+
+  .notifikasi {
+    background-color: #1A1A19;
+    padding: 30px 100px 30px 100px;
+    border-radius: 16px;
+    text-align: center;
+    width: 720px;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 156px;
+    margin-bottom: 56px;
+  }
+
+  .notif-picture img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    padding: 50px;
+  }
+
+  .notif-message {
+    font-size: 1rem;
+    margin: 10px 0;
+  }
+
+  .notif-message h3 {
+    color: #A3A869;
+    font-weight: bold;
+    font-size: 28px;
+  }
+
+  .notif-message h5 {
+    color: white;
+    font-size: 22px;
+  }
+
+  .button-beranda {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-weight: bold;
+    border-radius: 16px;
+    background-color: #A3A869;
+  }
+
+  .button-beranda a {
+    text-decoration: none;
+    font-size: 24px;
+    color: #1A1A19;
+  }
+
+  /* footer DONE */
+  footer {
+    color: #fff;
+    padding: 20px;
+  }
+
+  .footer-bottom p {
+    font-size: 16px;
+    text-align: center; 
+  }
+      
+  </style>
+    <link rel="stylesheet" href="/Semantic_STF/stfly.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    
+    <!-- link Bootstrap buat icon -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- bagian header DONE -->
+    <header class="header">
+      <div class="logo">
+          <img src="stok_foto/logo.png" alt="FastCycle Logo">
+          <span>FastCycle</span>
+      </div>
+      <div id="menu-icon" class="menu-icon">
+          <p>☰</p>
+      </div>
+      <nav class="nav-links">
+          <div class="nav-item"><a href="beranda.html">Beranda</a></div>
+          <div class="nav-item">
+              <a href="#">Layanan ▾</a>
+              <div class="dropdown">
+                  <a href="jualrongsok.html">Jual Rongsok</a>
+                  <a href="belirongsok.html">Beli Rongsok</a>
+              </div>
+          </div>
+          <div class="nav-item"><a href="panduan.html">Panduan</a></div>
+      </nav>
+  </header>
+ 
+
+    <!-- Bagian Notifikasi -->
+  <div class="notifikasi">
+    <div class="notif-picture">
+      <img src="stok_foto/transparent_notif_logo.png" alt="notif">
+    </div>
+    <div class="notif-message">
+      <h3>Pengajuan pendaftaranmu diterima.</h3>
+      <h5>Mohon tunggu konfirmasi lewat email</h5>
+      <h5>untuk informasi lebih lanjut</h5>
+      <button class="button-beranda">
+        <a href="beranda.html">Kembali ke Beranda</a>
+      </button>
+    </div>
+  </div>
+
+    <!-- bagian footer ANGGAPLAH DONE-->
+    <footer>
+    <div class="footer-bottom">
+        <p>© 2024 FastCycle, All rights reserved.</p>
+    </div>
+    </footer>
+
+    <!-- Script Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-Pogkn58WA2Ba3p9a17Yk0MvLK0/MORe+feVu6NEhsmjKu2+yhnU00c6wYOG5QmX6" crossorigin="anonymous"></script>
+
+    <!-- Script Java -->
+    <script src="/src/settings/setting.js"></script>
+
+    <script>
+      const menuIcon = document.getElementById('menu-icon');
+      const navLinks = document.querySelector('.nav-links');
+      menuIcon.addEventListener('click', () => {
+      navLinks.classList.toggle('hidden');
+      });
+      </script>
+</body>
+</html>

@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beli Rongsok</title>
+    <link rel="shortcut icon" href="stok_foto/logo.png">
+
+    <!-- Link Font Noto Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- Link Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Font Awesome Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Bagian nge-desain -->
+    <style>
+      .noto-sans {
+        font-family: "Noto Sans", serif;
+        font-optical-sizing: auto;
+        font-weight: 100;
+        font-style: normal;
+      }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans', sans-serif;
+        }
+
+        /* Body DONE */
+        body {
+            margin: 0px 70px 0px 70px;
+            background: linear-gradient(to bottom, #010101, #5c604f);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* header DONE */
+        .header {
+          margin-top: -190px;
+          margin-right: -70px;
+          margin-left: -70px;
+            position: fixed;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 90px;
+            margin-right: 3px;
+        }
+
+        .logo span {
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        /* NAVIGASI */
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            font-size: large;
+            padding-right: 40px;
+        }
+
+        .nav-item {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-item > a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .dropdown {
+          display: none;
+          position: absolute;
+          top: 100%;
+          min-width: 120px;
+        }
+
+        .dropdown a {
+          display: block;
+          color: white;
+          padding: 10px;
+          text-decoration: none;
+          font-size: 15px;
+        }
+
+        .dropdown a:hover {
+          background-color: #555;
+        }
+
+        .nav-item:hover .dropdown {
+          display: block;
+        }
+
+        .menu-icon {
+          font-size: 28px;
+          display: none;
+        }
+
+        /* FOOTER SECTION */
+        /* setting footer keseluruhan */
+        footer {
+          position: absolute;
+          background-color: #1A1A19;
+          color: #fff;
+          padding: 20px;
+          width: 100%;
+          left: 0;
+          right: 0;
+        }
+
+        /* setting judul footer "FastCycle" */
+        .footer-title h2 {
+          margin-top: 50px;
+          text-align: center;
+          font-size: 36px;
+          font-weight: bold;
+          color: #F6FCDF;
+        }
+
+        /* Setting untuk flex footer */
+        .flex-container {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          padding: 10px;
+          gap: 20px;
+        }
+
+        .flex-item {
+          padding: 0px 100px 0px 100px;
+          font-size: 24px;
+          flex: 1;
+          max-width: 600px;
+        }
+
+        /* bagian FAQ */
+        .footer-section h3 {
+          font-weight: bold;
+          margin-bottom: 20px;
+          color: #F6FCDF;
+        }
+
+        /* bagian contact us */
+        .contact-info a {
+          text-decoration: none;
+          color: inherit;
+        }
+
+        .contact-info a:hover {
+          text-decoration: underline;
+        }
+
+        /* Bagian credit */
+        .footer-bottom {
+          border-top: 2px solid #859F3D;
+          margin-top: 50px;
+          text-align: left;
+          font-size: 0.9rem;
+          padding-top: 10px;
+        }
+
+        .footer-bottom p {
+          text-decoration: none !important;
+          color: white;
+          pointer-events: none;
+        }
+
+        /* Accordion untuk FAQ */
+        .accordion-item {
+          background-color: #1A1A19;
+          color: #fff;
+          border: none; 
+          font-size: 20px;
+        }
+
+        .accordion-button {
+          background-color: #1A1A19;
+          color: white;
+          font-size: 20px;
+          border: none;
+        }
+
+        .accordion-button:focus {
+          outline: none;
+          box-shadow: none;
+        }
+
+        .accordion-button:not(.collapsed) {
+          background-color: #1A1A19;
+          color: white;
+          border: none;
+        }
+
+        .accordion-button:hover {
+          background-color: #1A1A19;
+          color: white;
+        }
+
+        .accordion-body {
+          overflow: visible;
+          font-size: 20px;
+          padding: 10px 15px;
+        }
+
+    /* Media query untuk layar kecil (HP) */
+    @media (max-width: 780px) {
+      /*header responsive */  
+      .logo img{
+        height:70px;
+      }
+
+      .logo span{
+        font-size: 35px;
+      }
+      .menu-icon {
+        display: block;
+      }
+      .nav-links {
+        text-align: center;
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        padding: 20px 0; 
+       }
+      .nav-links.hidden {
+         display: flex;
+      }
+      .nav-item {
+         margin: 10px 0;
+         text-align: center;
+      }
+      .dropdown {
+         position: static;
+         background-color: transparent;
+         padding: 0;
+      }
+      .dropdown a {
+          margin: 0;
+          color: white;
+      }
+
+      .button {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+      }
+
+      .footer-title h2 {
+        margin: 50px;
+        text-align: center;
+        font-size: 40px;
+        font-weight: bold;
+      }
+
+      .footer-section {
+        flex: 0 0 60px;
+      }
+
+      .flex-container {
+        flex-direction: column;
+      }
+
+      .flex-item {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .accordion-body {
+        max-width: 100px;
+        overflow-y: hidden;
+        margin-bottom: 5px;
+      }
+
+      .about-section, .nav-links {
+        padding: 10px;
+        align-items: center;
+      }
+    }
+  
+
+    /* card NOT DONE*/
+  .keterangan {
+    margin-top: 200px;
+    margin-right: 50px;
+    margin-left: 50px;
+  }
+
+  .card {
+    background-color: #1A1A19;
+    color: #fff;
+    border: 5px solid #859F3D; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+
+  .card img {
+    padding:15px;
+  }
+
+  .card-title {
+    font-size: 30px;
+  }
+
+  .card:hover {
+    transition: transform 0.5s ease;
+    transform: translateY(-7px);
+  }
+
+  /* tulisan pengepul_rosok 1 nya  */
+  .info-pengepul {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px;
+    font-size: 26px;
+    border-radius: 10px;
+    padding: 10px;
+    width: auto;
+    position: relative;
+    font-weight: bold;
+  }
+  
+  .info-pengepul:hover {
+    text-decoration: none;
+
+  }
+
+  /* tombol whatsapp-nya */
+  .whatsapp-button {
+    align-self: flex-end;
+    padding: 10px 20px;
+    font-size: 24px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #b7b77c;
+    color: #3b3b3b;
+    border: none;
+    border-radius: 20px;
+  }
+
+  .whatsapp-button:hover {
+    background-color: #a5a567;
+  }
+
+  /* Buat garis pemisah antara judul sama kontennya */
+  .garis_separasi-1 {
+    height: 4px;
+    background-color: black;
+    margin: 10px 0;
+  }
+
+  .garis_separasi-2 {
+    height: 1px;
+    background-color: black;
+    margin: 10px 0;
+    margin-bottom: 30px;
+  }
+
+  .pengepul-details {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    gap: 15px;
+    font-size: 20px;
+  }
+
+  h4.nama_pengepul {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .hidden {
+    display: none;
+  }
+  /* Rating */
+  .heading {
+  font-size: 25px;
+  margin-right: 25px;
+  }
+
+  .fa {
+    font-size: 25px;
+  }
+
+  .checked {
+    color: #F6FCDF;
+  }
+
+  /* pengaturan besar gambar tidak ada di sini karna mengatur langsung di tag html-nya */
+
+  </style>
+</head>
+
+<body>
+    <!-- bagian header DONE -->
+    <header class="header">
+      <div class="logo">
+          <img src="stok_foto/logo.png" alt="FastCycle Logo">
+          <span>FastCycle</span>
+      </div>
+      <div id="menu-icon" class="menu-icon">
+          <p>☰</p>
+      </div>
+      <nav class="nav-links">
+          <div class="nav-item"><a href="beranda.html">Beranda</a></div>
+          <div class="nav-item">
+              <a href="#">Layanan ▾</a>
+              <div class="dropdown">
+                  <a href="jualrongsok.html">Jual Rongsok</a>
+                  <a href="belirongsok.html">Beli Rongsok</a>
+              </div>
+          </div>
+          <div class="nav-item"><a href="panduan.html">Panduan</a></div>
+      </nav>
+  </header>
+
+  <!-- bagian card DONE -->
+   <section class="keterangan">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+    <div class="col">
+      <div class="card" onclick="loadAndScroll('hidden-section-1')">
+        <img src="stok_foto/sampah_perabotan.jpg" class="card-img-top" alt="card_sampah">
+        <div class="card-body">
+          <h5 class="card-title">Barang-Barang Rumah Tangga</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" onclick="loadAndScroll('hidden-section-2')">
+        <img src="stok_foto/sampah_botol.jpg" class="card-img-top" alt="card_sampah">
+        <div class="card-body">
+          <h5 class="card-title">Sampah Plastik dan Botol</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" onclick="loadAndScroll('hidden-section-3')">
+        <img src="stok_foto/sampah_logam.jpg" class="card-img-top" alt="card_sampah">
+        <div class="card-body">
+          <h5 class="card-title">Sampah Kaleng dan Logam</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" onclick="loadAndScroll('hidden-section-4')">
+        <img src="stok_foto/sampah_elektronik.jpg" class="card-img-top" alt="card_sampah">
+        <div class="card-body">
+          <h5 class="card-title">Barang-Barang Elektronik Bekas</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+        <div class="card" onclick="loadAndScroll('hidden-section-5')">
+          <img src="stok_foto/sampah_dokumen.jpg" class="card-img-top" alt="card_sampah">
+          <div class="card-body">
+            <h5 class="card-title">Sampah Kertas dan Kardus</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card" onclick="loadAndScroll('hidden-section-6')">
+          <img src="stok_foto/sampah_tekstil.jpg" class="card-img-top" alt="card_sampah">
+          <div class="card-body">
+            <h5 class="card-title">Barang Tekstil dan Baju Bekas</h5>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+  <!-- di sini tempat elemen baru bakal dimasukkin -->
+  <br>
+  <br>
+  <div id="dynamic-content"></div>
+
+    <!-- bagian footer DONE-->
+    <footer class="footer">
+        <div class="footer-title">
+            <h2>FastCycle</h2>
+        </div>
+        <div class="footer-content flex-container">
+            <div class="footer-section flex-item">
+                <h3>FAQ :</h3>
+                <div class="accordion">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-controls="panelsStayOpen-collapseOne">
+                        Mengapa harus FastCycle?
+                      </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+                      <div class="accordion-body">
+                        <strong>FastCycle</strong> mendukung pengepul rongsok serta perusahaan-perusahaan ramah lingkungan untuk terus berkembang. 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-controls="panelsStayOpen-collapseTwo">
+                        Bagaimana sistematika FastCycle?
+                      </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                      <div class="accordion-body">
+                        <strong>FastCycle</strong> membantu kamu menghubungi pengepul rongsok yang ada di sekitar kamu. 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-controls="panelsStayOpen-collapseThree">
+                        Kepada siapa saja FastCycle berkolaborasi?
+                      </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                      <div class="accordion-body">
+                        <strong>FastCycle</strong> berkolaborasi dengan berbagai perusahaan yang terbuka untuk memproduksi barang unggul berbahan dasar barang-barang bekas.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="footer-section flex-item">
+              <div class="contact-info">
+                <h3>Contact Us : </h3>
+                <p><i class="bi bi-envelope"></i><a href="mailto:fastcycle@gmail.com">  fastcycle@gmail.com</a></p>
+                <p><i class="bi bi-telephone"></i> +62-8123-456-789</p>
+              </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 FastCycle. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- script javascript -->
+     <script>
+        function loadAndScroll(sectionId) {
+          const dynamicContent = document.getElementById('dynamic-content');
+
+          if (!document.getElementById(sectionId)) {
+            const newSection = document.createElement('div');
+            newSection.id = sectionId;
+            newSection.className = 'hidden-section';
+                
+            let content = '';
+            switch(sectionId) {
+            case 'hidden-section-1':
+              content = 
+              `<!--DROPDOWN PENGEPUL RONGSOK RUMAH TANGGA -->
+              <div class="garis_separasi-1"></div>
+                <div class="info-pengepul">
+                  <span onclick="toggleDetails('pengepul-dropdown-1')"> ▾ Pengepul Rongsok Rumah Tangga </span>
+                </div>
+                <div class="garis_separasi-1"></div>
+  
+                <!--DROPDOWN PENGEPUL RONGSOK 1-->
+                <div id= "pengepul-dropdown-1" style= "display: none; margin-left: 20px;">  
+                <!-- PENGEPUL RONGSOK 1 -->
+                <div class="info-pengepul">
+                  <span onclick="toggleDetails('pengepul-dropdown-2')"> ▾ Pengepul Rongsok 1 </span>
+                  <button class="whatsapp-button" onclick="openWhatsApp('081234567890')">Whatsapp</button>
+                </div>
+                <div class="garis_separasi-2"></div>
+
+                <!--PENGEPUL RONGSOK 1 DETAILS -->
+                <div id= "pengepul-dropdown-2" style = "display: none;">
+                  <div class="pengepul-details">
+                    <img src="stok_foto/pengepul.png" alt="Pengepul Image" class="pengepul-img" style="width: 300px;">
+                    <div>
+                      <h4 class="nama_pengepul">Pengepul Rongsok Mirna</h4>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star"></span>
+                      <div class="garis_separasi-2"></div>
+                      <p>Jl. BDB Sirsak No. 36 RT 001/015, Kel. Cilangkap, Kecamatan Tapos, Kota Depok</p>
+                      <div class="garis_separasi-2"></div>
+                    </div>
+                  <div class="garis_separasi-2"></div>
+                </div>
+            </div>
+
+                <!- DROPDOWN PENGEPUL RONGSOK 2-->
+                <div class="info-pengepul">
+                  <span onclick="toggleDetails('pengepul-dropdown-3')"> ▾ Pengepul Rongsok 2 </span>
+                  <button class="whatsapp-button" onclick="openWhatsApp('081234567890')">Whatsapp</button>
+                </div>
+                <div class="garis_separasi-2"></div>
+
+                <!--PENGEPUL RONGSOK 2 DETAILS -->
+                <div id= "pengepul-dropdown-3" style = "display: none;">
+                  <div class="pengepul-details">
+                    <img src="stok_foto/pengepul.png" alt="Pengepul Image" class="pengepul-img" style="width: 300px;">
+                    <div>
+                      <h4 class="nama_pengepul">Pengepul Rongsok Mirna</h4>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <div class="garis_separasi-2"></div>
+                      <p>Jl. BDB Sirsak No. 36 RT 001/015, Kel. Cilangkap, Kecamatan Tapos, Kota Depok</p>
+                      <div class="garis_separasi-2"></div>
+                    </div>
+                  <div class="garis_separasi-2"></div>
+                </div>
+            </div>`;
+              break;
+
+            case 'hidden-section-2':
+              content = 
+              `<!--DROPDOWN PENGEPUL BARANG-BARANG SAMPAH PLASTIK -->
+              <div class="garis_separasi-1"></div>
+                <div class="info-pengepul">
+                  <span onclick="toggleDetails('pengepul-dropdown-4')"> ▾ Pengepul Rongsok Sampah Plastik </span>
+                </div>
+                <div class="garis_separasi-1"></div>
+  
+                <!--DROPDOWN PENGEPUL RONGSOK 1-->
+                <div id= "pengepul-dropdown-4" style= "display: none; margin-left: 20px;">  
+                <!-- PENGEPUL RONGSOK 1 -->
+                <div class="info-pengepul">
+                  <span onclick="toggleDetails('pengepul-dropdown-5')"> ▾ Pengepul Rongsok 1 </span>
+                  <button class="whatsapp-button" onclick="openWhatsApp('081234567890')">Whatsapp</button>
+                </div>
+                <div class="garis_separasi-2"></div>
+
+                <!--PENGEPUL RONGSOK 1 DETAILS -->
+                <div id= "pengepul-dropdown-5" style = "display: none;">
+                  <div class="pengepul-details">
+                    <img src="stok_foto/pengepul.png" alt="Pengepul Image" class="pengepul-img" style="width: 300px;">
+                    <div>
+                      <h4 class="nama_pengepul">Pengepul Rongsok Mirna</h4>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <div class="garis_separasi-2"></div>
+                      <p>Jl. BDB Sirsak No. 36 RT 001/015, Kel. Cilangkap, Kecamatan Tapos, Kota Depok</p>
+                      <div class="garis_separasi-2"></div>
+                    </div>
+                  <div class="garis_separasi-2"></div>
+                </div>
+              </div>
+
+                <!- DROPDOWN PENGEPUL RONGSOK 2-->
+                <div class="info-pengepul">
+                  <span onclick="toggleDetails('pengepul-dropdown-6')"> ▾ Pengepul Rongsok 2 </span>
+                  <button class="whatsapp-button" onclick="openWhatsApp('081234567890')">Whatsapp</button>
+                </div>
+                <div class="garis_separasi-2"></div>
+
+                <!--PENGEPUL RONGSOK 2 DETAILS -->
+                <div id= "pengepul-dropdown-6" style = "display: none;">
+                  <div class="pengepul-details">
+                    <img src="stok_foto/pengepul.png" alt="Pengepul Image" class="pengepul-img" style="width: 300px;">
+                    <div>
+                      <h4 class="nama_pengepul">Pengepul Rongsok Mirna</h4>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <div class="garis_separasi-2"></div>
+                      <p>Jl. BDB Sirsak No. 36 RT 001/015, Kel. Cilangkap, Kecamatan Tapos, Kota Depok</p>
+                      <div class="garis_separasi-2"></div>
+                    </div>
+                  <div class="garis_separasi-2"></div>
+                </div>
+              </div>`;
+            break;
+
+            case 'hidden-section-3':
+            content = 
+            `<!--DROPDOWN PENGEPUL RONGSOK KALENG DAN LOGAM -->
+              <div class="garis_separasi-1"></div>
+                <div class="info-pengepul">
+                  <span onclick="toggleDetails('pengepul-dropdown-7')"> ▾ Pengepul Rongsok Kaleng dan Logam </span>
+                </div>
+                <div class="garis_separasi-1"></div>
+  
+                <!--DROPDOWN PENGEPUL RONGSOK 1-->
+                <div id= "pengepul-dropdown-7" style= "display: none; margin-left: 20px;">  
+                <!-- PENGEPUL RONGSOK 1 -->
+                <div class="info-pengepul">
+                  <span onclick="toggleDetails('pengepul-dropdown-8')"> ▾ Pengepul Rongsok 1 </span>
+                  <button class="whatsapp-button" onclick="openWhatsApp('081234567890')">Whatsapp</button>
+                </div>
+                <div class="garis_separasi-2"></div>
+
+                <!--PENGEPUL RONGSOK 1 DETAILS -->
+                <div id= "pengepul-dropdown-8" style = "display: none;">
+                  <div class="pengepul-details">
+                    <img src="stok_foto/pengepul.png" alt="Pengepul Image" class="pengepul-img" style="width: 300px;">
+                    <div>
+                      <h4 class="nama_pengepul">Pengepul Rongsok Mirna</h4>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <div class="garis_separasi-2"></div>
+                      <p>Jl. BDB Sirsak No. 36 RT 001/015, Kel. Cilangkap, Kecamatan Tapos, Kota Depok</p>
+                    <div class="garis_separasi-2"></div>
+                </div>
+              </div>
+              </div>`;
+            break;
+            
+              case 'hidden-section-4':
+              content =
+              `<!--DROPDOWN PENGEPUL RONGSOK ELKETRONIK BEKAS -->
+              <div class="garis_separasi-1"></div>
+                <div class="info-pengepul">
+                  <span onclick="toggleDetails('pengepul-dropdown-10')"> ▾ Pengepul Rongsok Elektronik Bekas </span>
+                </div>
+                <div class="garis_separasi-1"></div>
+  
+                <!--DROPDOWN PENGEPUL RONGSOK 1-->
+                <div id= "pengepul-dropdown-10" style= "display: none; margin-left: 20px;">  
+                <!-- PENGEPUL RONGSOK 1 -->
+                <div class="info-pengepul">
+                  <span onclick="toggleDetails('pengepul-dropdown-11')"> ▾ Pengepul Rongsok 1 </span>
+                  <button class="whatsapp-button" onclick="openWhatsApp('081234567890')">Whatsapp</button>
+                </div>
+                <div class="garis_separasi-2"></div>
+
+                <!--PENGEPUL RONGSOK 1 DETAILS -->
+                <div id= "pengepul-dropdown-11" style = "display: none;">
+                  <div class="pengepul-details">
+                    <img src="stok_foto/pengepul.png" alt="Pengepul Image" class="pengepul-img" style="width: 300px;">
+                    <div>
+                      <h4 class="nama_pengepul">Pengepul Rongsok Mirna</h4>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <div class="garis_separasi-2"></div>
+                      <p>Jl. BDB Sirsak No. 36 RT 001/015, Kel. Cilangkap, Kecamatan Tapos, Kota Depok</p>
+                      <div class="garis_separasi-2"></div>
+                    </div>
+                  <div class="garis_separasi-2"></div>
+                </div>
+                </div>
+
+                <!- DROPDOWN PENGEPUL RONGSOK 2-->
+                <div class="info-pengepul">
+                  <span onclick="toggleDetails('pengepul-dropdown-12')"> ▾ Pengepul Rongsok 2 </span>
+                  <button class="whatsapp-button" onclick="openWhatsApp('081234567890')">Whatsapp</button>
+                </div>
+                <div class="garis_separasi-2"></div>
+
+                <!--PENGEPUL RONGSOK 2 DETAILS -->
+                <div id= "pengepul-dropdown-12" style = "display: none;">
+                  <div class="pengepul-details">
+                    <img src="stok_foto/pengepul.png" alt="Pengepul Image" class="pengepul-img" style="width: 300px;">
+                    <div>
+                      <h4 class="nama_pengepul">Pengepul Rongsok Mirna</h4>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <div class="garis_separasi-2"></div>
+                      <p>Jl. BDB Sirsak No. 36 RT 001/015, Kel. Cilangkap, Kecamatan Tapos, Kota Depok</p>
+                      <div class="garis_separasi-2"></div>
+                    </div>
+                  <div class="garis_separasi-2"></div>
+                </div>
+              </div>`;
+            break;
+
+              case 'hidden-section-5':
+              content =
+            `<!--DROPDOWN PENGEPUL RONGSOK KERTAS DAN KARDUS -->
+              <div class="garis_separasi-1"></div>
+                <div class="info-pengepul">
+                  <span onclick="toggleDetails('pengepul-dropdown-13')"> ▾ Pengepul Rongsok Kertas dan Kardus </span>
+                </div>
+                <div class="garis_separasi-1"></div>
+  
+                <!--DROPDOWN PENGEPUL RONGSOK 1-->
+                <div id= "pengepul-dropdown-13" style= "display: none; margin-left: 20px;">  
+                <!-- PENGEPUL RONGSOK 1 -->
+                <div class="info-pengepul">
+                  <span onclick="toggleDetails('pengepul-dropdown-14')"> ▾ Pengepul Rongsok 1 </span>
+                  <button class="whatsapp-button" onclick="openWhatsApp('081234567890')">Whatsapp</button>
+                </div>
+                <div class="garis_separasi-2"></div>
+
+                <!--PENGEPUL RONGSOK 1 DETAILS -->
+                <div id= "pengepul-dropdown-14" style = "display: none;">
+                  <div class="pengepul-details">
+                    <img src="stok_foto/pengepul.png" alt="Pengepul Image" class="pengepul-img" style="width: 300px;">
+                    <div>
+                      <h4 class="nama_pengepul">Pengepul Rongsok Mirna</h4>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star "></span>
+                      <span class="fa fa-star "></span>
+                      <div class="garis_separasi-2"></div>
+                      <p>Jl. BDB Sirsak No. 36 RT 001/015, Kel. Cilangkap, Kecamatan Tapos, Kota Depok</p>
+                      <div class="garis_separasi-2"></div>
+                    </div>
+                  <div class="garis_separasi-2"></div>
+                </div>
+                </div>
+
+                <!- DROPDOWN PENGEPUL RONGSOK 2-->
+                <div class="info-pengepul">
+                  <span onclick="toggleDetails('pengepul-dropdown-15')"> ▾ Pengepul Rongsok 2 </span>
+                  <button class="whatsapp-button" onclick="openWhatsApp('081234567890')">Whatsapp</button>
+                </div>
+                <div class="garis_separasi-2"></div>
+
+                <!--PENGEPUL RONGSOK 2 DETAILS -->
+                <div id= "pengepul-dropdown-15" style = "display: none;">
+                  <div class="pengepul-details">
+                    <img src="stok_foto/pengepul.png" alt="Pengepul Image" class="pengepul-img" style="width: 300px;">
+                    <div>
+                      <h4 class="nama_pengepul">Pengepul Rongsok Mirna</h4>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <div class="garis_separasi-2"></div>
+                      <p>Jl. BDB Sirsak No. 36 RT 001/015, Kel. Cilangkap, Kecamatan Tapos, Kota Depok</p>
+                      <div class="garis_separasi-2"></div>
+                    </div>
+                <div class="garis_separasi-2"></div>
+              </div>
+            </div>`;
+          break;
+
+            case 'hidden-section-6':
+            content =
+            `<!--DROPDOWN PENGEPUL RONGSOK BARANG TEKSTIL DAN BAJU BEKAS -->
+              <div class="garis_separasi-1"></div>
+                <div class="info-pengepul">
+                  <span onclick="toggleDetails('pengepul-dropdown-16')"> ▾ Pengepul Rongsok Barang Tekstil dan Baju Bekas </span>
+                </div>
+                <div class="garis_separasi-1"></div>
+  
+                <!--DROPDOWN PENGEPUL RONGSOK 1-->
+                <div id= "pengepul-dropdown-16" style= "display: none; margin-left: 20px;">  
+                <!-- PENGEPUL RONGSOK 1 -->
+                <div class="info-pengepul">
+                  <span onclick="toggleDetails('pengepul-dropdown-17')"> ▾ Pengepul Rongsok 1 </span>
+                  <button class="whatsapp-button" onclick="openWhatsApp('081234567890')">Whatsapp</button>
+                </div>
+                <div class="garis_separasi-2"></div>
+
+                <!--PENGEPUL RONGSOK 1 DETAILS -->
+                <div id= "pengepul-dropdown-17" style = "display: none;">
+                  <div class="pengepul-details">
+                    <img src="stok_foto/pengepul.png" alt="Pengepul Image" class="pengepul-img" style="width: 300px;">
+                    <div>
+                      <h4 class="nama_pengepul">Pengepul Rongsok Mirna</h4>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <div class="garis_separasi-2"></div>
+                      <p>Jl. BDB Sirsak No. 36 RT 001/015, Kel. Cilangkap, Kecamatan Tapos, Kota Depok</p>
+                      <div class="garis_separasi-2"></div>
+                    </div>
+                  <div class="garis_separasi-2"></div>
+                </div>
+                </div>
+              </div>`;
+          break;
+          }
+            
+            newSection.innerHTML = content;
+            dynamicContent.appendChild(newSection);
+          }
+
+          //scroll ke section
+          document.getElementById(sectionId).scrollIntoView({behavior: 'smooth'});
+        }
+
+        function toggleDetails(detailId) {
+          const detailElement = document.getElementById(detailId);
+
+          if (detailElement.style.display === 'none' || detailElement.style.display === '') {
+            detailElement.style.display = "block";
+          }
+          else {
+            detailElement.style.display = "none";
+          }
+        }
+
+        // Fungsi untuk membuka WhatsApp
+        function openWhatsApp(number) {
+            const url = `https://wa.me/${number}`;
+            window.open(url, "_blank");
+          }
+
+        const menuIcon = document.getElementById('menu-icon');
+        const navLinks = document.querySelector('.nav-links');
+        menuIcon.addEventListener('click', () => {
+          navLinks.classList.toggle('hidden');
+        });
+  
+    </script>
+
+    <!-- Link Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
+
